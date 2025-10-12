@@ -85,11 +85,11 @@ public class Main {
 
         System.out.println("1.1.5");
         House ho1 = new House();
-        ho1.floors = 1;
+//        ho1.floors = 1;
         System.out.println(ho1);
-        ho1.floors = 5;
+//        ho1.floors = 5;
         System.out.println(ho1);
-        ho1.floors = 23;
+//        ho1.floors = 23;
         System.out.println(ho1);
 
     }

@@ -26,6 +26,33 @@ public class Start1_3 {
 
         System.out.println("1.3.3");
         //двумерный массив way[][2]? и потом всё задавать руками, плюс могут остаться пустыми? или можно массивы запихнуть как варарги?;
+        //надо через ArrayList<>, щас сделаю
+        Town a = new Town("A");
+        Town b = new Town("B");
+        Town c = new Town("C");
+        Town d = new Town("D");
+        Town e = new Town("E");
+        Town f = new Town("F");
+        System.out.println(a);
+        a.addTownWay(b, 5);
+        b.addTownWay(a, 5);
+        a.addTownWay(d, 6);
+        d.addTownWay(a, 6);
+        a.addTownWay(f, 1);
+        f.addTownWay(a, 1);
+        b.addTownWay(c, 3);
+        c.addTownWay(b, 3);
+        b.addTownWay(f, 1);
+        f.addTownWay(b, 1);
+        c.addTownWay(d, 4);
+        d.addTownWay(c, 4);
+        d.addTownWay(e, 2);
+        e.addTownWay(d, 2);
+        e.addTownWay(f, 2);
+        f.addTownWay(e, 2);
+        System.out.println(a);
+        System.out.println(f);
+
 
         System.out.println("1.3.4");
         //как использовать массив вместо списка? каждый раз генерировать новый и перекопировать?

@@ -5,8 +5,8 @@ public class Polyline {
         this.points=points;
     }
     public Polyline(){
-
     }
+
 
     @Override
     public String toString(){

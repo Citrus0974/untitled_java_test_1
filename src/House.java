@@ -1,5 +1,5 @@
 public class House {
-    public int floors = 0;
+    final int floors;
 
     public House(int floors){
         if (floors>0){
@@ -7,7 +7,7 @@ public class House {
         } else throw new IllegalArgumentException();
     }
     public House(){
-
+        this(1);
     }
 
     @Override
