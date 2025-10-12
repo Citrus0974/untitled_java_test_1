@@ -7,7 +7,23 @@ public class Student {
         this.marks=marks;
     }
 
+    public double averageMark(){
+        if(this.marks.length == 0){
+            return 0;
+        }
+        int all=0;
+        int sz=marks.length;
+        for(int i=0; i<sz; i++) all+=marks[i];
+        return all/sz;
+    }
 
+    public boolean isExcellent(){
+        if(this.marks.length == 0) return false;
+        for(int i=0; i<this.marks.length; i++){
+            if(marks[i]<5) return false;
+        }
+        return true;
+    }
 
     @Override
     public String toString(){
