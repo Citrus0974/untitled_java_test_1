@@ -1,18 +1,36 @@
 import java.util.ArrayList;
-import java.util.List;
+
 
 public class Town {
     public String name = "";
-    public List<Town> townWays = new ArrayList<>();
-    public List<Integer> costs = new ArrayList<>();
+    public ArrayList<WayToTown> ways = new ArrayList<>();
 
     public Town(String name){
         this.name = name;
     }
+    public Town(String name, WayToTown...towns){
+        this(name);
+        for(int i=0; i<towns.length; i++){
+            this.addTownWay(towns[i]);
+        }
+    }
 
-    public void addTownWay (Town town, int cost){
-        this.townWays.add(town);
-        this.costs.add(cost);
+    public void addTownWay (WayToTown townWay){
+        WayToTown currWay;
+        for(int i=0; i<this.ways.size(); i++){
+            currWay = this.ways.get(i);
+            if(currWay.getTown() == townWay.getTown()){
+                if(currWay.getCost() == townWay.getCost()){
+                    break;
+                } else{
+                    currWay.setCost(townWay.getCost());
+                    break;
+                }
+            }
+            this.ways.add(townWay);
+            townWay.getTown().addTownWay(new WayToTown(this, townWay.getCost()));
+        }
+
     }
     public String getName(){
         return this.name;
@@ -20,10 +38,13 @@ public class Town {
     @Override
     public String toString(){
         String out = "Город " + this.name;
-        int sz = townWays.size();
-        if(sz != 0) out+= ". Список путей: \n";
-        for(int i=0; i<sz; i++){
-            out = out  + this.townWays.get(i).getName() + ", цена: " + this.costs.get(i) + "\n";
+        if (ways!=null){
+            out+= ". Список путей: \n";
+            WayToTown tmp;
+            for(int i=0; i<ways.size(); i++){
+                tmp = this.ways.get(i);
+                out = out  + tmp.getTown().getName() + ", цена: " + tmp.getCost() + "\n";
+            }
         }
         return out;
     }
