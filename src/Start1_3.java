@@ -1,21 +1,22 @@
 public class Start1_3 {
     public static void main(String []args){
         System.out.println("1.3.1");
-        Student s1 = new Student("Вася", 3,4,5);
-        Student s2 = new Student("Петя");
-        s2.marks=s1.marks;
-        s2.marks[0]=5;
-        System.out.println(s1);
-        System.out.println(s2);
-        System.out.println("ссылка на один и тот же массив скопировалась, а не само содержание массива");
-        Student s3 = new Student("Андрей");
-        s3.marks=new int[s1.marks.length];
-        for(int i=0; i<s3.marks.length; i++){
-            s3.marks[i]=s1.marks[i];
-        }
-        s3.marks[0]=2;
-        System.out.println(s3);
-        System.out.println(s1);
+//        Student s1 = new Student("Вася", 3,4,5);
+//        Student s2 = new Student("Петя");
+//        s2.marks=s1.marks;
+//        s2.marks[0]=5;
+//        System.out.println(s1);
+//        System.out.println(s2);
+//        System.out.println("ссылка на один и тот же массив скопировалась, а не само содержание массива");
+//        Student s3 = new Student("Андрей");
+//        s3.marks=new int[s1.marks.length];
+//        for(int i=0; i<s3.marks.length; i++){
+//            s3.marks[i]=s1.marks[i];
+//        }
+//        s3.marks[0]=2;
+//        System.out.println(s3);
+//        System.out.println(s1);
+        //пришлось скрыть из-за закрытия полей согласно 1.6.8
 
         System.out.println("1.3.2");
         Point p1 = new Point(1, 5);
@@ -50,7 +51,7 @@ public class Start1_3 {
         Employee e1 = new Employee("Петров", dep1);
         Employee e2 = new Employee("Козлов", dep1);
         Employee e3 = new Employee("Сидоров", dep1);
-        dep1.boss=e2;
+//        dep1.boss=e2;
         e3.department.getAllEmployees();
     }
 }

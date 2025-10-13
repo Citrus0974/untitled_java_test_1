@@ -50,18 +50,19 @@ public class Main {
 //        System.out.println(h3);
 
         System.out.println("1.1.3");
-        Name n1 = new Name();
-        n1.nam = "Клеопатра";
-        System.out.println(n1);
-        Name n2 = new Name();
-        n2.fam = "Пушкин";
-        n2.nam = "Александр";
-        n2.otch = "Сергеевич";
-        System.out.println(n2);
-        Name n3 = new Name();
-        n3.fam = "Маяковский";
-        n3.nam = "Владимир";
-        System.out.println(n3);
+//        Name n1 = new Name();
+//        n1.nam = "Клеопатра";
+//        System.out.println(n1);
+//        Name n2 = new Name();
+//        n2.fam = "Пушкин";
+//        n2.nam = "Александр";
+//        n2.otch = "Сергеевич";
+//        System.out.println(n2);
+//        Name n3 = new Name();
+//        n3.fam = "Маяковский";
+//        n3.nam = "Владимир";
+//        System.out.println(n3);
+        // убрано из-за закрытия полей согласено 1.6.2
 
         System.out.println("1.1.4");
         Time t1 = new Time();

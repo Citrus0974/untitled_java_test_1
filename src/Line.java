@@ -1,8 +1,8 @@
 import com.sun.jdi.IntegerValue;
 
 public class Line {
-    public Point a = new Point(0, 0);
-    public Point b = new Point(0, 0);
+    private Point a = new Point(0, 0);
+    private Point b = new Point(0, 0);
 
 
     public Line(Point a, Point b){
@@ -23,19 +23,19 @@ public class Line {
     }
 
     public void setA(Point a) {
-        this.a = a;
+        this.a = new Point(a);
     }
 
     public void setB(Point b) {
-        this.b = b;
+        this.b = new Point(b);
     }
 
     public Point getA() {
-        return a;
+        return new Point(a);
     }
 
     public Point getB() {
-        return b;
+        return new Point(b);
     }
 
     public int lineLength(){

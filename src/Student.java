@@ -1,10 +1,17 @@
 public class Student {
-    public String name = "";
-    int[] marks;
+    private String name = "";
+    private int[] marks;
 
     public Student(String name, int...marks){
         this.name=name;
+        for(int i=0; i<marks.length; i++){
+            if(marks[i]>5 || marks[i]<2) throw new IllegalArgumentException();
+        }
         this.marks=marks;
+    }
+
+    public int[] getMarks() {
+        return marks.clone();
     }
 
     public double averageMark(){
@@ -24,6 +31,8 @@ public class Student {
         }
         return true;
     }
+
+
 
     @Override
     public String toString(){

@@ -1,10 +1,10 @@
 public class Name {
-    public String fam = "";
-    public String nam = "";
-    public String otch = "";
+    private String fam;
+    private String nam;  //или всё-таки final?
+    private String otch;
 
-    public Name(){
-    }
+//    public Name(){
+//    }
     public Name(String surname, String name, String otchestvo){
         this(surname, name);
         this.otch = otchestvo;
@@ -16,6 +16,19 @@ public class Name {
         this(name);
         this.fam = surname;
     }
+
+    public String getFam() {
+        return fam;
+    }
+
+    public String getNam() {
+        return nam;
+    }
+
+    public String getOtch() {
+        return otch;
+    }
+
 
     @Override
     public String toString(){

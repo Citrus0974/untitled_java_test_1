@@ -1,15 +1,15 @@
 public class Human{
-    public Name name;
-    public int height = 0;
-    public Human father;
+    private Name name;
+    private int height = 0;
+    private Human father;
 
     public Human(Name name, int h){
         this(name);
         this.height = h;
     }
-    public Human(){
-        this.name = new Name();
-    }
+//    public Human(){
+//        this.name = new Name();
+//    }
     public Human(Name name, int h, Human father){
         this(name, h);
         this.father = father;
@@ -30,14 +30,22 @@ public class Human{
 
 
     public String getNameString(){
-        return this.name.nam;
+        return this.name.getNam();
     }
     public String getOtch(){
-        return this.name.otch;
+        return this.name.getOtch();
     }
     public String getSurname(){
-        if (this.name.fam=="") return this.father.name.fam;
-        else return this.name.fam;
+        if (this.name.getFam()=="") return this.father.name.getFam();
+        else return this.name.getFam();
+    }
+
+    public Name getName() {
+        return name;
+    }
+
+    public Human getFather() {
+        return father;
     }
 
     @Override
@@ -50,8 +58,8 @@ public class Human{
         }
 //        if (name.fam=="") out += father.name.fam; else out+= name.fam;
         out+=this.getSurname();
-        if (name.nam!="") out = out + " " + name.nam;
-        if (name.otch=="") out = out + " " + father.name.nam + "ович";
+        if (name.getNam()!="") out = out + " " + name.getNam();
+        if (name.getOtch()=="") out = out + " " + father.name.getNam() + "ович";
         if (height!=0) out = out + ", рост: " + height;
         return out;
     }

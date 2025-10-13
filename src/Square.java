@@ -3,11 +3,23 @@ public class Square {
     private int size;
 
     public Square(Point base, int size) {
-        this.base = base;
-        this.size = size;
+        if(size>0) {
+            this.size = size;
+            this.base = base;
+        }
+        else throw new IllegalArgumentException("Negative size of square is not allowed");
     }
     public Square(int baseX, int baseY, int size) {
         this(new Point(baseX, baseY), size);
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        if(size>0) this.size = size;
+        else throw new IllegalArgumentException("Negative size of square is not allowed");
     }
 
     public Polyline toPolyline(){

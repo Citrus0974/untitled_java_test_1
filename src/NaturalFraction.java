@@ -1,8 +1,13 @@
 public class NaturalFraction {
-    public int numerator;
-    public int denominator;
+    final int numerator;
+    final int denominator;
 
     public NaturalFraction(int numerator, int denominator){
+        if(denominator==0) throw new IllegalArgumentException();
+        if (denominator<0) {
+            numerator*=(-1);
+            denominator*=(-1);
+        }
         this.numerator=numerator;
         this.denominator=denominator;
     }

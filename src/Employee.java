@@ -13,13 +13,17 @@ public class Employee {
         dep.allEmplyees.add(this);
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
     @Override
     public String toString(){
         String out = name;
         if (department==null) return out;
-        if (department.boss == this) out += " начальник отдела"; else out+= " работает в отделе";
+        if (department.getBoss() == this) out += " начальник отдела"; else out+= " работает в отделе";
         if (department.name!="") out = out + " " + department.name;
-        if (department.boss == this || department.boss== null) return out; else out = out + ", начальник которого " + department.boss.name;
+        if (department.getBoss() == this || department.getBoss()== null) return out; else out = out + ", начальник которого " + department.getBoss().name;
         return out;
 
     }
