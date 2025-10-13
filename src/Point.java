@@ -1,4 +1,4 @@
-public class Point {
+public sealed class Point permits Point3D {
     public int x;
     public int y;
 

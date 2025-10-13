@@ -20,6 +20,15 @@ public class Polyline {
         }
     }
 
+    public Point getPoint(int index){
+        if(index<this.getSegmentCount()){
+            return this.points[index];
+        } else throw new IllegalArgumentException();
+    }
+    public int getSegmentCount(){
+        return this.points.length;
+    }
+
     public void changePoint(int index, Point point){
         if(index>points.length-1) throw new ArrayIndexOutOfBoundsException();
         points[index]=point;
