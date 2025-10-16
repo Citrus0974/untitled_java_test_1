@@ -18,6 +18,17 @@ public class Start2_1 {
         System.out.println("2.1.3");
         //по иронии судьбы, я изначально так и пытался сделать с изначальным классом. Теперь переделывать и его без попытки определить строки?
         //По идее опять нужно только переопределение методов и/или конструкторов
+        SymmetricTown c1 = new SymmetricTown("ABC");
+        Town c2 = new Town("DEF");
+        c2.putRoad(c1,3);
+        c1.putRoad(c2, 5);
+        SymmetricTown c3 = new SymmetricTown("MSC",new WayToTown(c1,7),new WayToTown(c2,8));
+
+        System.out.println(c1);
+        System.out.println(c2);
+        System.out.println(c3);
+
+
 
 
         System.out.println("2.1.4");
@@ -27,7 +38,8 @@ public class Start2_1 {
         System.out.println("2.1.5");
         //тоже вроде несложно, но нужно добавить конструкторов сеттеров геттеров, и сделать sealed Point permits Point3d
         //вроде тоже готово
-
+        Point3D p1 = new Point3D(1, 3, 6);
+        System.out.println(p1);
 
 
 

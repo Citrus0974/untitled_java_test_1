@@ -37,7 +37,7 @@ public class Start1_3 {
         Town f = new Town("F", new WayToTown(a, 1), new WayToTown(b, 1), new WayToTown(e, 2));
         System.out.println(a);
         System.out.println(d);
-        a.addTownWay(new WayToTown(b, 5));
+        a.putRoad(new WayToTown(b, 5));
         System.out.println(a);
         //попытка номер два через дополнительную сущность WayToTown
         //попытка не увенчалась успехом. Я не понимаю, почему в методе addTownWay оно спотыкается даже при пустом списке

@@ -1,53 +1,58 @@
 import java.util.ArrayList;
-
+import java.util.List;
 
 public class Town {
-    public String name = "";
-    public ArrayList<WayToTown> ways = new ArrayList<>();
+    private String name;
+    private List<WayToTown> roads = new ArrayList<>();
 
-    public Town(String name){
+
+    public Town(String name, WayToTown...roads){
+        this.name=name;
+        for(int i=0; i< roads.length; i++){
+            this.putRoad(roads[i]);
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
-    public Town(String name, WayToTown...towns){
-        this(name);
-        for(int i=0; i<towns.length; i++){
-            this.addTownWay(towns[i]);
+
+    public List<WayToTown> getRoads() {
+        return new ArrayList<>(roads);
+    }
+
+    public void setRoads(List<WayToTown> roads) {
+        for(int i=0; i< roads.size(); i++){
+            this.putRoad(roads.get(i));
         }
     }
 
-    public void addTownWay (WayToTown townWay){
-        WayToTown currWay;
-        for(int i=0; i<this.ways.size(); i++){
-            currWay = this.ways.get(i);
-            if(currWay.getTown() == townWay.getTown()){
-                if(currWay.getCost() == townWay.getCost()){
-                    break;
-                } else{
-                    currWay.setCost(townWay.getCost());
-                    break;
-                }
+    public void putRoad(WayToTown wayToTown) {
+        for (WayToTown currWayToTown : roads) {
+            if (currWayToTown.getDestination() == wayToTown.getDestination()) {
+                wayToTown.setCost(currWayToTown.getCost());
+                return;
             }
-            this.ways.add(townWay);
-            townWay.getTown().addTownWay(new WayToTown(this, townWay.getCost()));
         }
-
+        this.roads.add(wayToTown);
     }
-    public String getName(){
-        return this.name;
+    public void putRoad(Town destination, int cost){
+        putRoad(new WayToTown(destination, cost));
+    }
+    public boolean containsRoad(Town destination){
+        for (WayToTown wayToTown : roads) {
+            if(wayToTown.getDestination()==destination){
+                return true;
+            }
+        }
+        return false;
     }
     @Override
     public String toString(){
-        String out = "Город " + this.name;
-        if (ways!=null){
-            out+= ". Список путей: \n";
-            WayToTown tmp;
-            for(int i=0; i<ways.size(); i++){
-                tmp = this.ways.get(i);
-                out = out  + tmp.getTown().getName() + ", цена: " + tmp.getCost() + "\n";
-            }
-        }
-        return out;
+        return "Town: " + name + ", Ways list: " + roads;
     }
 }
-
-

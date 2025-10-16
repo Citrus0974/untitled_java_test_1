@@ -3,7 +3,9 @@ public class ClosedPolyline extends Polyline{
         super(points);
     }
 
+    @Override
     public int fullLength(){
+        if(super.getSegmentCount()<3) return super.fullLength();
         int res = super.fullLength();
         Line tmp = new Line(this.getPoint(0), this.getPoint(this.getSegmentCount()-1));
         res+=tmp.lineLength();

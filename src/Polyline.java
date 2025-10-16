@@ -1,18 +1,18 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Polyline {
-    public Point[] points;
+    public List<Point> points = new ArrayList<>();
 
     public Polyline(Point...points){
-        this.points=points;
+        this.points.addAll(Arrays.asList(points));
     }
     public Polyline(){
     }
 
     public void addPoint(Point point){
-        int sz = points.length;
-        Point[] newPoints = new Point[sz+1];
-        System.arraycopy(points, 0, newPoints, 0, sz);
-        newPoints[sz] = point;
-        points = newPoints;
+        points.add(point);
     }
     public void addPoint(Point...newPoints) {
         for(int i=0; i<newPoints.length; i++){
@@ -22,24 +22,29 @@ public class Polyline {
 
     public Point getPoint(int index){
         if(index<this.getSegmentCount()){
-            return this.points[index];
+            return this.points.get(index);
         } else throw new IllegalArgumentException();
     }
     public int getSegmentCount(){
-        return this.points.length;
+        return this.points.size();
     }
 
     public void changePoint(int index, Point point){
-        if(index>points.length-1) throw new ArrayIndexOutOfBoundsException();
-        points[index]=point;
+        if(index>points.size()-1) throw new ArrayIndexOutOfBoundsException();
+        points.set(index, point);
+    }
+
+    public void setPoints(List<Point> points) {
+        if(points.size()<=2)
+        this.points = points;
     }
 
     public int fullLength(){
         int res=0;
         Line tmp;
-        int sz = points.length;
+        int sz = points.size();
         for(int i=0; i<sz-1; i++){
-            tmp=new Line(points[i], points[i+1]);
+            tmp=new Line(points.get(i), points.get(i + 1));
             res+= tmp.lineLength();
         }
         return res;
@@ -48,10 +53,10 @@ public class Polyline {
     @Override
     public String toString(){
         String out = "[";
-        for(int i =0; i<this.points.length-1; i++){
-            out+= this.points[i];
+        for(int i =0; i<this.points.size()-1; i++){
+            out+= this.points.get(i);
             out+=", ";
         }
-        return out + this.points[this.points.length-1] + "]";
+        return out + this.points.get(this.points.size() - 1) + "]";
     }
 }

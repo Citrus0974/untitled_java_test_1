@@ -1,20 +1,15 @@
 public class WayToTown {
-    private Town town;
+    private Town destination;
     private int cost;
 
-    public WayToTown(Town town, int cost){
-        this.town=town;
+    public WayToTown(Town city, int cost){
+        this.destination=city;
         this.cost=cost;
+
     }
 
-    public Town getTown() {
-        return town;
-    }
-
-    public void setTown(Town town) {
-        if(town!=null){
-            this.town = town;
-        }
+    public Town getDestination() {
+        return destination;
     }
 
     public int getCost() {
@@ -24,6 +19,9 @@ public class WayToTown {
     public void setCost(int cost) {
         this.cost = cost;
     }
+
+    @Override
+    public String toString() {
+        return destination.getName() + ":" + cost;
+    }
 }
-
-
