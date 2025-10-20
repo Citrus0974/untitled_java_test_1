@@ -1,4 +1,4 @@
-public class NaturalFraction {
+public class NaturalFraction extends Number{
     final int numerator;
     final int denominator;
 
@@ -41,5 +41,25 @@ public class NaturalFraction {
     @Override
     public String toString(){
         return numerator + "/" + denominator;
+    }
+
+    @Override
+    public int intValue() {
+        return numerator;
+    }
+
+    @Override
+    public long longValue() {
+        return 0;
+    }
+
+    @Override
+    public float floatValue() {
+        return (float) numerator /denominator;
+    }
+
+    @Override
+    public double doubleValue() {
+        return (double) numerator /denominator;
     }
 }

@@ -6,7 +6,7 @@ public class Start1_5 {
         System.out.println("1.5.1");
         Gun g1 = new Gun(3);
         for (int i = 0; i < 5; i++) {
-            g1.gunShoot();
+            g1.shoot();
         }
 
         System.out.println("1.5.2");

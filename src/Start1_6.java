@@ -12,7 +12,7 @@ public class Start1_6 {
         System.out.println("1.6.3");
         Square sq1 = new Square(1, 1, 5);
         System.out.println(sq1);
-        sq1.setSize(25);
+//        sq1.setSize(25);
 
         System.out.println("1.6.4");
         NaturalFraction fr1 = new NaturalFraction(5, -9);
@@ -21,18 +21,19 @@ public class Start1_6 {
         System.out.println(fr2);
 
         System.out.println("1.6.5");
-        Gun g1 = new Gun(7);
-        g1.reloadGun(3);
-        g1.gunShoot();
-        g1.gunShoot();
-        g1.gunShoot();
-        g1.gunShoot();
-        g1.gunShoot();
-        g1.reloadGun(8);
-        g1.gunShoot();
-        g1.gunShoot();
-        g1.dischargeGun();
-        g1.gunShoot();
+        System.out.println("ликвидировано по причине 2.2.1");
+//        Gun g1 = new Gun(7);
+//        g1.reloadGun(3);
+//        g1.gunShoot();
+//        g1.gunShoot();
+//        g1.gunShoot();
+//        g1.gunShoot();
+//        g1.gunShoot();
+//        g1.reloadGun(8);
+//        g1.gunShoot();
+//        g1.gunShoot();
+//        g1.dischargeGun();
+//        g1.gunShoot();
 
         System.out.println("1.6.6");
         //и так уже делали на прошлой паре

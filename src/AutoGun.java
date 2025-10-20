@@ -15,14 +15,14 @@ public class AutoGun extends Gun{
     }
 
     @Override
-    public void gunShoot() {
+    public void shoot() {
         for(int i=0; i<rapidFire; i++){
-            super.gunShoot();
+            super.shoot();
         }
     }
     public void shootFor(int sec){
         for(int i=0; i<rapidFire*sec; i++){
-            super.gunShoot();
+            super.shoot();
         }
     }
 }

@@ -1,57 +1,41 @@
-public class Gun {
-    final int maxShots;
-    public int shotsRemain;
+public class Gun extends Weapon{
+    final int maxAmmo;
 
-    public Gun(int maxShots){
-        if(maxShots<=0) throw new IllegalArgumentException("should not be negative or empty");
-        this.maxShots=maxShots;
-        this.shotsRemain=0;
+    public Gun(int maxAmmo, int remain){
+        super(remain);
+        this.maxAmmo = maxAmmo;
     }
-    public Gun(int maxShots, int remain){
-        this.maxShots=maxShots;
-        this.shotsRemain=remain;
+    public Gun(int maxAmmo) {
+        super(0);
+        this.maxAmmo=maxAmmo;
     }
+
     public Gun(){
-        this(5);
+        this(5, 5);
     }
 
-    public int getMaxShots() {
-        return maxShots;
+    public int getMaxAmmo() {
+        return this.maxAmmo;
     }
 
     public int getShotsRemain() {
-        return shotsRemain;
+        return super.getAmmo();
     }
 
-    public boolean isCharged(){
-        if(shotsRemain==0) return false;
-        else return true;
-    }
-
-    public void gunShoot(){
-        if(this.shotsRemain>0){
+    public void shoot(){
+        if(super.getAmmo()>0){
             System.out.println("BOOM");
-            this.shotsRemain--;
+            super.takeOneAmmo();
         } else System.out.println("CLICK");
     }
-    public int reloadGun(int giveShots){
-        if(giveShots<=0) throw new IllegalArgumentException("Number of shots given should not be 0 or negative");
 
-        if(giveShots>maxShots-shotsRemain){
-            int given = maxShots-shotsRemain;
-//            System.out.println("Returned shots: " + (giveShots-given));
-            int returnedShots = giveShots-given;
-            shotsRemain=maxShots;
-            return returnedShots;
-        } else shotsRemain+=giveShots;
-        return 0;
+    public int reloadGun(int giveShots){
+        return super.loadAmmo(giveShots);
     }
 
     public int dischargeGun(){
-//        System.out.println("Discharging shots: " + shotsRemain);
-        int returnedShots = shotsRemain;
-        shotsRemain = 0;
-        return returnedShots;
+        return super.loadAmmo(0);
     }
-
 }
+
+
