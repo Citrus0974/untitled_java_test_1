@@ -45,21 +45,21 @@ public class NaturalFraction extends Number{
 
     @Override
     public int intValue() {
-        return numerator;
+        return numerator/denominator;
     }
 
     @Override
     public long longValue() {
-        return 0;
+        return numerator/denominator;
     }
 
     @Override
     public float floatValue() {
-        return (float) numerator /denominator;
+        return (float) numerator/denominator;
     }
 
     @Override
     public double doubleValue() {
-        return (double) numerator /denominator;
+        return (double) numerator/denominator;
     }
 }
