@@ -1,7 +1,7 @@
-public class Kot {
+public class Cat implements Meowing{
     public String name;
 
-    public Kot(String name){
+    public Cat(String name){
         this.name=name;
     }
 

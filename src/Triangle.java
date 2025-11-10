@@ -10,10 +10,10 @@ public class Triangle extends Figure{
     @Override
     public int area() {
         Point p1 = super.getBase();
-        int halfP = new ClosedPolyline(p1, p2, p3).fullLength()/2;
+        int halfP = new ClosedPolyline(p1, p2, p3).length()/2;
         return (int) Math.sqrt(halfP*
-                (halfP- new Line(p1, p2).lineLength())*
-                (halfP- new Line(p2, p3).lineLength())*
-                (halfP- new Line(p3, p1).lineLength()));
+                (halfP- new Line(p1, p2).length())*
+                (halfP- new Line(p2, p3).length())*
+                (halfP- new Line(p3, p1).length()));
     }
 }

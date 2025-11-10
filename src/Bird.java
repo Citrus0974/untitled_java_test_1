@@ -1,4 +1,4 @@
-public abstract class Bird {
+public abstract class Bird implements Singing{
     private final String voice;
 
     public Bird(String voice) {
@@ -9,6 +9,6 @@ public abstract class Bird {
         return voice;
     }
 
-    public abstract void sing();
+//    public abstract void sing();
 
 }

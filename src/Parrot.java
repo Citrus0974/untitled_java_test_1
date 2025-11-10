@@ -4,7 +4,7 @@ public class Parrot extends Bird{
     public Parrot(String text){
         super(text);
     }
-    @Override
+
     public void sing() {
         Random random = new Random();
         String voice = super.getVoice();

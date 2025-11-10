@@ -4,11 +4,11 @@ public class ClosedPolyline extends Polyline{
     }
 
     @Override
-    public int fullLength(){
-        if(super.getSegmentCount()<3) return super.fullLength();
-        int res = super.fullLength();
+    public int length(){
+        if(super.getSegmentCount()<3) return super.length();
+        int res = super.length();
         Line tmp = new Line(this.getPoint(0), this.getPoint(this.getSegmentCount()-1));
-        res+=tmp.lineLength();
+        res+=tmp.length();
         return res;
     }
 }

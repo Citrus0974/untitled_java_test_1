@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Cuckoo extends Bird{
+public class Cuckoo extends Bird implements Singing{
     public Cuckoo(){
         super("ku-ku");
     }

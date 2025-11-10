@@ -1,6 +1,4 @@
-import com.sun.jdi.IntegerValue;
-
-public class Line {
+public class Line implements Lengthening{
     private Point a = new Point(0, 0);
     private Point b = new Point(0, 0);
 
@@ -38,7 +36,7 @@ public class Line {
         return new Point(b);
     }
 
-    public int lineLength(){
+    public int length(){
         int tmp = (b.x - a.x)*(b.x - a.x) + (b.y - a.y)*(b.y - a.y);
         double sqrt = Math.sqrt(tmp);
         tmp = Math.toIntExact(Math.round(sqrt));

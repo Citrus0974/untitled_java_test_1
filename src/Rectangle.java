@@ -15,6 +15,9 @@ public class Rectangle extends Figure{
     public Rectangle(int baseX, int baseY, int width, int height) {
         this(new Point(baseX, baseY), width, height);
     }
+    public Rectangle(int baseX, int baseY, int size) {
+        this(new Point(baseX, baseY), size);
+    }
 
     public int getHeight() {
         return height;

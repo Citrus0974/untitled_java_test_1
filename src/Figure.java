@@ -11,4 +11,5 @@ public abstract class Figure {
     public Point getBase() {
         return base;
     }
+
 }

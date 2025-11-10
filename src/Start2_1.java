@@ -10,9 +10,9 @@ public class Start2_1 {
         // или его как раз и добавлять в метод определения длины? или в конструктор?
         //Переопределил только метод определения длины.
         Polyline pl1 = new Polyline(new Point(1, 2), new Point(3, 2), new Point(5, 7));
-        System.out.println(pl1.fullLength());
+        System.out.println(pl1.length());
         ClosedPolyline l2 = new ClosedPolyline(new Point(1, 2), new Point(3, 2), new Point(5, 7));
-        System.out.println(l2.fullLength());
+        System.out.println(l2.length());
 
 
         System.out.println("2.1.3");

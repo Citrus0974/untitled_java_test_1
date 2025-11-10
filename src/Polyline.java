@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Polyline {
+public class Polyline implements Lengthening{
     public List<Point> points = new ArrayList<>();
 
     public Polyline(Point...points){
@@ -39,13 +39,13 @@ public class Polyline {
         this.points = points;
     }
 
-    public int fullLength(){
+    public int length(){
         int res=0;
         Line tmp;
         int sz = points.size();
         for(int i=0; i<sz-1; i++){
             tmp=new Line(points.get(i), points.get(i + 1));
-            res+= tmp.lineLength();
+            res+= tmp.length();
         }
         return res;
     }

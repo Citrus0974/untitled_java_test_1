@@ -1,4 +1,4 @@
-public class Sparrow extends Bird{
+public class Sparrow extends Bird implements Singing{
     public Sparrow(){
         super("chirp");
     }
