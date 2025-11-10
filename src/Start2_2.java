@@ -51,4 +51,5 @@ public class Start2_2 {
         VariablePoint vp2 = new VariablePoint(new int[]{1, 2}, color3, siz1);
         System.out.println(vp2);
     }
+    // git test
 }
