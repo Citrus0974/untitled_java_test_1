@@ -1,6 +1,3 @@
-import java.rmi.AlreadyBoundException;
-import java.util.SortedMap;
-
 public class Start2_3 {
     public static void main(String[] args){
         System.out.println("2.3.1");
@@ -20,7 +17,25 @@ public class Start2_3 {
         System.out.println(lengthOfAll(new Polyline(new Point(1, 1), new Point(3, 2), new Point(4, 5)),
                         new Line(1,2, 5, 6),
                 new ClosedPolyline(new Point(1, 1), new Point(3, 2), new Point(4, 5))));
-        
+        System.out.println("2.3.6");
+        System.out.println(new Square(1, 1, 5).getPolyline().length());
+        System.out.println(new Square(1, 1, 5).getPolyline().getClass());
+        System.out.println("2.3.7");
+        System.out.println(fullPolyline(new Square(1, 1, 5), new Polyline(new Point(1, 2), new Point(2, 3))));
+        System.out.println("2.3.8");
+        Gunner g1 = new Gunner("ACPerry");
+        Gunner g2 = new Gunner("SkyTrooper");
+        g2.setGun(new AutoGun(10, 3));
+        Gunner g3 = new Gunner("AgentPea");
+        g3.setGun(new Gun(5, 5));
+        g1.shoot();
+        g2.shoot();
+        g3.shoot();
+        System.out.println("2.3.9");
+        Student st1 = new Student("Vasya", new Mark1or0(), 1, 0, 1);
+        Student st2 = new Student("Petya", new MarksEvenNumber(), 2, 10, 100);
+        System.out.println(st1);
+        System.out.println(st2);
 
     }
 
@@ -61,6 +76,18 @@ public class Start2_3 {
         int res=0;
         for(int i =0; i< figures.length; i++){
             res+=figures[i].length();
+        }
+        return res;
+    }
+
+    public static Polyline fullPolyline(PolygonalChain...figures){
+        if(figures.length<=0) throw new IllegalArgumentException("must be at least 1 figure");
+        Polyline res= new Polyline();
+        for(int i =0; i< figures.length; i++){
+            Polyline tmp = figures[i].getPolyline();
+            for(int j=0; j<tmp.getSegmentCount(); j++){
+                res.addPoint(tmp.getPoint(j));
+            }
         }
         return res;
     }

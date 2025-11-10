@@ -1,4 +1,4 @@
-public class Square {
+public class Square implements PolygonalChain{
     private Point base;
     private int size;
 
@@ -22,11 +22,11 @@ public class Square {
         else throw new IllegalArgumentException("Negative size of square is not allowed");
     }
 
-    public Polyline toPolyline(){
+    public Polyline getPolyline(){
         Point p2 = new Point(base.getX()+size, base.getY());
         Point p3 = new Point(base.getX()+size, base.getY()+size);
         Point p4 = new Point(base.getX(), base.getY()+size);
-        return new Polyline(base, p2, p3, p4);
+        return new ClosedPolyline(base, p2, p3, p4);
     }
 
 

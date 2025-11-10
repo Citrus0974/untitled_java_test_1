@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
-public class MarkCriteria {
+public interface MarkCriteria {
+    boolean isMarkCorrect(int mark);
 }

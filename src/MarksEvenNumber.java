@@ -1,4 +1,8 @@
-package PACKAGE_NAME;
+public class MarksEvenNumber implements MarkCriteria{
 
-public class MarksEvenNumber {
+    @Override
+    public boolean isMarkCorrect(int mark) {
+        if(mark%2==1) return false;
+        else return true;
+    }
 }

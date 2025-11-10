@@ -50,7 +50,7 @@ public class Start1_5 {
 
         System.out.println("1.5.8");
         Square sq1 = new Square(5, 3, 23);
-        Polyline pl2 = sq1.toPolyline();
+        Polyline pl2 = sq1.getPolyline();
         System.out.println(pl2.length());
         pl2.changePoint(3, new Point(15, 25));
         System.out.println(pl2.length());

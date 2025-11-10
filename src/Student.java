@@ -1,13 +1,25 @@
+import java.util.ArrayList;
+
 public class Student {
     private String name = "";
     private int[] marks;
+    private MarkCriteria criteria;
 
     public Student(String name, int...marks){
+        this(name, null, marks);
+    }
+
+    public Student(String name, MarkCriteria criteria, int...marks){
+        this.criteria=criteria;
         this.name=name;
-        for(int i=0; i<marks.length; i++){
-            if(marks[i]>5 || marks[i]<2) throw new IllegalArgumentException();
+        if(criteria==null){
+            this.marks=marks;
+        } else{
+            for (int mark : marks) {
+                if (!criteria.isMarkCorrect(mark)) throw new IllegalArgumentException("wrong marks");
+            }
+            this.marks=marks;
         }
-        this.marks=marks;
     }
 
     public int[] getMarks() {
@@ -35,14 +47,15 @@ public class Student {
 
 
     @Override
-    public String toString(){
-        if(this.marks.length>0){
-            String out=name + ": [";
-            for(int i=0; i<this.marks.length-1; i++){
-                out+= this.marks[i];
-                out+= "; ";
+    public String toString() {
+        if (this.marks == null) return name;
+        if (this.marks.length > 0) {
+            String out = name + ": [";
+            for (int i = 0; i < this.marks.length - 1; i++) {
+                out += this.marks[i];
+                out += "; ";
             }
-            return out + this.marks[this.marks.length-1] + "]";
+            return out + this.marks[this.marks.length - 1] + "]";
         } else return name;
     }
 }

@@ -1,4 +1,3 @@
-package PACKAGE_NAME;
-
-public class PolygonalChain {
+public interface PolygonalChain {
+    public Polyline getPolyline();
 }

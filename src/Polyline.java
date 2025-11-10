@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Polyline implements Lengthening{
+public class Polyline implements Lengthening, PolygonalChain{
     public List<Point> points = new ArrayList<>();
 
     public Polyline(Point...points){
@@ -19,6 +19,13 @@ public class Polyline implements Lengthening{
             this.addPoint(newPoints[i]);
         }
     }
+//    public void addPoints(Polyline...newPoints) {
+//        for(int i=0; i<newPoints.length; i++){
+//            for(int j=0; j<newPoints[i].getSegmentCount(); j++){
+//                this.addPoint(newPoints[i].getPoint(j));
+//            }
+//        }
+//    }
 
     public Point getPoint(int index){
         if(index<this.getSegmentCount()){
@@ -58,5 +65,10 @@ public class Polyline implements Lengthening{
             out+=", ";
         }
         return out + this.points.get(this.points.size() - 1) + "]";
+    }
+
+    @Override
+    public Polyline getPolyline() {
+        return this;
     }
 }
