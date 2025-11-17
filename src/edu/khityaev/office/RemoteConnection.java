@@ -22,9 +22,9 @@ public class RemoteConnection {
     }
 
     public String requestConnectionData() throws LostConnectionException {
-        if (!open) throw new LostConnectionException();
+        if (!open) throw new ClosedAlreadyException();
         Random rnd = new Random();
-        if(rnd.nextBoolean()) throw new ClosedAlreadyException();
+        if(rnd.nextBoolean()) throw new LostConnectionException();
         return "test connection";
     }
 }

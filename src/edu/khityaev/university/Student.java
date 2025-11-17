@@ -29,6 +29,18 @@ public class Student {
         return marks.clone();
     }
 
+    public void addMark(int mark){
+        int[] newMarks = new int[marks.length+1];
+        System.arraycopy(marks, 0, newMarks, 0, marks.length);
+        if(criteria==null){
+            newMarks[newMarks.length-1]=mark;
+        } else{
+            if (!criteria.isMarkCorrect(mark)) throw new WrongMarkException(this.name);
+            newMarks[newMarks.length-1]=mark;
+        }
+        this.marks = newMarks;
+    }
+
     public double averageMark(){
         if(this.marks.length == 0){
             return 0;
