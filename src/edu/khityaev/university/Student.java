@@ -19,7 +19,7 @@ public class Student {
             this.marks=marks;
         } else{
             for (int mark : marks) {
-                if (!criteria.isMarkCorrect(mark)) throw new IllegalArgumentException("wrong marks");
+                if (!criteria.isMarkCorrect(mark)) throw new WrongMarkException(this.name);
             }
             this.marks=marks;
         }
