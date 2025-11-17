@@ -12,7 +12,7 @@ public class Employee {
     public Employee(String name, Department dep){
         this.name=name;
         this.department=dep;
-        dep.allEmplyees.add(this);
+        dep.allEmployees.add(this);
     }
 
     public Department getDepartment() {

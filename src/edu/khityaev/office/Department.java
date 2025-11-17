@@ -6,7 +6,7 @@ import java.util.List;
 public class Department {
     public String name = "";
     Employee boss;
-    final List<Employee> allEmplyees = new ArrayList<>();
+    final List<Employee> allEmployees = new ArrayList<>();
 
 
     public Department(){
@@ -22,20 +22,20 @@ public class Department {
 
     void addEmployee(Employee employee){
         if(employee==null) return;
-        if(this.allEmplyees.contains(employee)) return;
+        if(this.allEmployees.contains(employee)) return;
         if(employee.department!=null){
             employee.department.removeEmployee(employee);
         }
-        this.allEmplyees.add(employee);
+        this.allEmployees.add(employee);
         employee.department=this;
 
     }
 
-    public void removeEmployee(Employee employee) {
+    void removeEmployee(Employee employee) {
         if(employee==null) return;
-        if(!this.allEmplyees.contains(employee)) return;
+        if(!this.allEmployees.contains(employee)) return;
         if(this.boss==employee) this.boss=null;
-        this.allEmplyees.remove(employee);
+        this.allEmployees.remove(employee);
         employee.department = null;
     }
 
@@ -49,8 +49,17 @@ public class Department {
     }
 
     public void getAllEmployees(){
-        for(int i=0; i<allEmplyees.size(); i++){
-            System.out.println(allEmplyees.get(i));
+        for (Employee allEmplyee : allEmployees) {
+            System.out.println(allEmplyee);
         }
+    }
+
+    @Override
+    public String toString() {
+        String res = "Department " + this.name + " with boss " + this.boss.name + ". Employees: ";
+        for(Employee employee: allEmployees){
+            res= res + employee.name + "; ";
+        }
+        return res;
     }
 }

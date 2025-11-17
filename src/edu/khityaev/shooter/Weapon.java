@@ -1,7 +1,7 @@
 package edu.khityaev.shooter;
 
 public abstract class Weapon {
-    private int ammo;
+    int ammo;
     public Weapon(int ammo){
         if(ammo<0) throw new IllegalArgumentException();
         this.ammo=ammo;

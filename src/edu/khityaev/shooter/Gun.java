@@ -36,7 +36,9 @@ public class Gun extends Weapon {
     }
 
     public int dischargeGun(){
-        return super.loadAmmo(0);
+        int tmp = this.ammo;
+        ammo = 0;
+        return tmp;
     }
 }
 
