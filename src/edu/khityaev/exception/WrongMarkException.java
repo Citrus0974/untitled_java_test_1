@@ -1,4 +1,4 @@
-package edu.khityaev.university;
+package edu.khityaev.exception;
 
 public class WrongMarkException extends RuntimeException{
     public WrongMarkException(){}

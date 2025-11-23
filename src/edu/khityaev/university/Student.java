@@ -1,11 +1,14 @@
 package edu.khityaev.university;
 
-import java.util.Arrays;
+import edu.khityaev.exception.WrongMarkException;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Student {
     private String name = "";
-    private int[] marks;
+    private List<Integer> marks = new ArrayList<>();
     private MarkCriteria criteria;
 
     public Student(String name, int...marks){
@@ -16,45 +19,73 @@ public class Student {
         this.criteria=criteria;
         this.name=name;
         if(criteria==null){
-            this.marks=marks;
+            for(Integer mark : marks){
+                this.addMark(mark);
+            }
         } else{
             for (int mark : marks) {
                 if (!criteria.isMarkCorrect(mark)) throw new WrongMarkException(this.name);
             }
-            this.marks=marks;
+            for(Integer mark : marks){
+                this.addMark(mark);
+            }
         }
     }
 
-    public int[] getMarks() {
-        return marks.clone();
+    public  Student(Student student){
+        if(student==null) throw new NullPointerException("cannot copy null object");
+        this.name = student.name;
+        this.marks = student.marks;
+        this.criteria = student.criteria;
+    }
+
+    public List getMarks() {
+        return marks;
     }
 
     public void addMark(int mark){
-        int[] newMarks = new int[marks.length+1];
-        System.arraycopy(marks, 0, newMarks, 0, marks.length);
         if(criteria==null){
-            newMarks[newMarks.length-1]=mark;
-        } else{
-            if (!criteria.isMarkCorrect(mark)) throw new WrongMarkException(this.name);
-            newMarks[newMarks.length-1]=mark;
+            marks.add(mark);
         }
-        this.marks = newMarks;
+        if (!criteria.isMarkCorrect(mark)) throw new WrongMarkException(this.name);
+        marks.add(mark);
+     }
+
+    public void addMarks(int...marks){
+        if(marks.length==1) throw new IllegalArgumentException("must be at least 1 mark");
+        List<Integer> newMarks = new ArrayList<>();
+        for(int i=0; i<marks.length; i++){
+            if(criteria==null){
+                newMarks.add(marks[i]);
+            } else {
+                if (!criteria.isMarkCorrect(marks[i])) throw new WrongMarkException(this.name);
+                newMarks.add(marks[i]);
+            }
+        }
+        this.marks.addAll(newMarks);
+    }
+
+    public void setMarks(List<Integer> marks) {
+        for(Integer mark : marks){
+            if (!criteria.isMarkCorrect(mark)) throw new WrongMarkException(this.name);
+        }
+        this.marks = marks;
     }
 
     public double averageMark(){
-        if(this.marks.length == 0){
+        if(this.marks.isEmpty()){
             return 0;
         }
         int all=0;
-        int sz=marks.length;
-        for(int i=0; i<sz; i++) all+=marks[i];
-        return all/sz;
+        int sz=marks.size();
+        for (Integer mark : marks) all += mark;
+        return (double) all/sz;
     }
 
     public boolean isExcellent(){
-        if(this.marks.length == 0) return false;
-        for(int i=0; i<this.marks.length; i++){
-            if(marks[i]<5) return false;
+        if(this.marks.isEmpty()) return false;
+        for (Integer mark : this.marks) {
+            if (mark < 5) return false;
         }
         return true;
     }
@@ -64,13 +95,13 @@ public class Student {
     @Override
     public String toString() {
         if (this.marks == null) return name;
-        if (this.marks.length > 0) {
+        if (!this.marks.isEmpty()) {
             String out = name + ": [";
-            for (int i = 0; i < this.marks.length - 1; i++) {
-                out += this.marks[i];
+            for (int i = 0; i < this.marks.size() - 1; i++) {
+                out += this.marks.get(i);
                 out += "; ";
             }
-            return out + this.marks[this.marks.length - 1] + "]";
+            return out + this.marks.getLast() + "]";
         } else return name;
     }
 

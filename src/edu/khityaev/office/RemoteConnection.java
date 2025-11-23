@@ -1,10 +1,9 @@
 package edu.khityaev.office;
 
-import edu.khityaev.ClosedAlreadyException;
-import edu.khityaev.LostConnectionException;
+import edu.khityaev.exception.ClosedAlreadyException;
+import edu.khityaev.exception.LostConnectionException;
 
 import java.util.Random;
-import java.util.random.RandomGenerator;
 
 public class RemoteConnection {
     private boolean open = true;

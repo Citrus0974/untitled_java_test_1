@@ -1,6 +1,6 @@
 package edu.khityaev.office;
 
-import edu.khityaev.LostConnectionException;
+import edu.khityaev.exception.LostConnectionException;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package edu.khityaev;
+package edu.khityaev.exception;
 
 public class LostConnectionException extends Exception{
     public LostConnectionException() {

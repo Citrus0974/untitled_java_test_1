@@ -1,13 +1,12 @@
 package edu.khityaev.main;
 
-import edu.khityaev.ClosedAlreadyException;
-import edu.khityaev.LostConnectionException;
+import edu.khityaev.exception.LostConnectionException;
 import edu.khityaev.office.ExampleConnector;
 import edu.khityaev.office.RemoteConnection;
 import edu.khityaev.university.Mark1or0;
 import edu.khityaev.university.Marks2to5;
 import edu.khityaev.university.Student;
-import edu.khityaev.university.WrongMarkException;
+import edu.khityaev.exception.WrongMarkException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,15 +87,24 @@ public class Start4_2 {
     }
 
     public static void addRandomMarkToStudents(List<Student> students){
+        //Нужно переделать, добавив копирующий конструктор в студента. (вроде переделал)
         Random rnd = new Random();
-        for(Student student : students){
+        int mark = rnd.nextInt(1, 10);
+        List<Student> newStudents = new ArrayList<>(students);
+        for (Student value : students) {
+            newStudents.add(new Student(value));
+        }
+        for(Student student : newStudents){
             try{
-                student.addMark(rnd.nextInt(1, 10));
+                student.addMark(mark);
             } catch (WrongMarkException e){
                 throw new IllegalArgumentException("wrong mark", e);
-
+//                return ;
             }
         }
-
+        for(Student student : students) {
+            student.addMark(mark);
+        }
     }
+
 }
