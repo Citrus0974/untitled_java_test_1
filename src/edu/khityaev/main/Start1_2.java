@@ -29,7 +29,7 @@ public class Start1_2 {
         System.out.println("line l3" + l3);
 
         Point p5 = new Point();
-        l1.setA(p5);
+//        l1.setA(p5);
         System.out.println(" ");
         System.out.println("line l1" + l1);
         System.out.println("line l2" + l2);

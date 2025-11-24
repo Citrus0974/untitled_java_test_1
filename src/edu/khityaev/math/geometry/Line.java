@@ -2,35 +2,36 @@ package edu.khityaev.math.geometry;
 
 import java.util.Objects;
 
-public class Line implements Lengthening{
-    private Point a = new Point(0, 0);
-    private Point b = new Point(0, 0);
+public class Line<T extends Point> implements Lengthening, Cloneable{
+    private T a;
+    private T b;
 
 
-    public Line(Point a, Point b){
+    public Line(T a, T b){
 //        this.a = a;
 //        this.b = b;
-        this(a.getX(), a.getY(), b.getX(), b.getY());
+        this.a = a;
+        this.b =b;
     }
     public Line(){
         this(0, 0, 0, 0);
     }
     public Line(int x1, int y1, int x2, int y2){
 //        this(new edu.khityaev.math.geometry.Point(x1, y1), new edu.khityaev.math.geometry.Point(x2, y2));
-        this.a = new Point(x1, y1);
-        this.b = new Point(x2, y2);
+        this.a = (T) new Point(x1, y1);
+        this.b = (T) new Point(x2, y2);
     }
     public Line(Line line){
-        this(line.a, line.b);
+        this((T) line.a, (T) line.b);
     }
 
-    public void setA(Point a) {
-        this.a = new Point(a);
-    }
-
-    public void setB(Point b) {
-        this.b = new Point(b);
-    }
+//    public void setA(T a) {
+//        this.a = a;
+//    }
+//
+//    public void setB(T b) {
+//        this.b = b;
+//    }
 
     public Point getA() {
         return new Point(a);
@@ -64,5 +65,10 @@ public class Line implements Lengthening{
     @Override
     public int hashCode() {
         return a.hashCode()+b.hashCode();
+    }
+
+    @Override
+    public Line clone() {
+        return new Line(a.clone(), b.clone());
     }
 }

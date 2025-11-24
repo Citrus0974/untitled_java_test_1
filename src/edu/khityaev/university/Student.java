@@ -1,12 +1,13 @@
 package edu.khityaev.university;
 
 import edu.khityaev.exception.WrongMarkException;
+import edu.khityaev.structure.Comparable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Student {
+public class Student implements Comparable {
     private String name = "";
     private List<Integer> marks = new ArrayList<>();
     private MarkCriteria criteria;
@@ -116,5 +117,12 @@ public class Student {
     @Override
     public int hashCode() {
         return Objects.hash(name, averageMark());
+    }
+
+    @Override
+    public <T> int compare(T value) {
+        Student newStudent = (Student) value;
+        if(this.averageMark() == newStudent.averageMark()) return 0;
+        if(this.averageMark() > newStudent.averageMark()) return 1; else return -1;
     }
 }

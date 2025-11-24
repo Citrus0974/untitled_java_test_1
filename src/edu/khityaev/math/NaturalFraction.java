@@ -1,6 +1,6 @@
 package edu.khityaev.math;
 
-public class NaturalFraction extends Number{
+public class NaturalFraction extends Number implements Cloneable{
     final int numerator;
     final int denominator;
 
@@ -63,5 +63,14 @@ public class NaturalFraction extends Number{
     @Override
     public double doubleValue() {
         return (double) numerator/denominator;
+    }
+
+    @Override
+    public Number clone(){
+        try {
+            return (Number) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
