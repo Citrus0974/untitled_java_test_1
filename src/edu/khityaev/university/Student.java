@@ -44,8 +44,9 @@ public class Student {
     }
 
     public void addMark(int mark){
-        if(criteria==null){
+        if(this.criteria==null){
             marks.add(mark);
+            return;
         }
         if (!criteria.isMarkCorrect(mark)) throw new WrongMarkException(this.name);
         marks.add(mark);

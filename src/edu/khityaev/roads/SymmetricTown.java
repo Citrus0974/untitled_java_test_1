@@ -13,4 +13,5 @@ public class SymmetricTown extends Town{
         target.putRoad(this, road.getCost());
     }
 
+
 }
