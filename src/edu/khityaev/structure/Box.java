@@ -23,4 +23,10 @@ public class Box<T> {
     public boolean isEmpty(){
         return obj == null;
     }
+
+    @Override
+    public String toString() {
+        if(this.isEmpty()) return "Empty Box";
+        else return "Box contains: " + obj.getClass() + " = " + obj.toString();
+    }
 }

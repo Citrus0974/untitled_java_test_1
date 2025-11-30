@@ -21,6 +21,10 @@ public class Line<T extends Point> implements Lengthening, Cloneable{
         this.a = (T) new Point(x1, y1);
         this.b = (T) new Point(x2, y2);
     }
+    public Line(int x1, int y1, int z1, int x2, int y2, int z2){
+        this.a = (T) new Point3D(x1, y1, z1);
+        this.b = (T) new Point3D(x2, y2, z2);
+    }
     public Line(Line line){
         this((T) line.a, (T) line.b);
     }
@@ -33,12 +37,17 @@ public class Line<T extends Point> implements Lengthening, Cloneable{
 //        this.b = b;
 //    }
 
+    //  По-хорошему должно было и дальше возвращать копии точек для инкапсуляции.
+    //  Но в 6.2.1 слишком неудобно получается. Создавать новую линию? Тогда придётся заставлять метод возвращать новую ссылку,
+    //которая будет ограниченного, а не определённого типа, она по идее не присвоится в старую переменную.
     public Point getA() {
-        return new Point(a);
+//        return new Point(a);
+        return this.a;
     }
 
     public Point getB() {
-        return new Point(b);
+//        return new Point(b);
+        return this.b;
     }
 
     public int length(){
