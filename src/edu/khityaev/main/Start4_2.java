@@ -37,7 +37,41 @@ public class Start4_2 {
             exc1.unregister();
             return;
         } catch (RuntimeException e){
-            return;
+//            return;
+        }
+
+        System.out.println("task2");
+        RemoteConnection connection = new RemoteConnection("23");
+//        for(int i=0; i<10; i++){
+//            try {
+//                System.out.println(connection.requestConnectionData());
+//            } catch (LostConnectionException e) {
+////                throw new RuntimeException(e);
+//                System.out.println("DISCONNECTED");
+//            }
+//        }
+        int i1 = 0;
+        while(i1<10){
+            try{
+                System.out.println(connection.requestConnectionData());
+            } catch (LostConnectionException e){
+                System.out.println(e);
+                i1--;
+            }
+            i1++;
+        }
+
+        System.out.println("task2.5");
+        RemoteConnection connection2 = new RemoteConnection("23");
+        i1 = 0;
+        while(i1<10){
+            try{
+                System.out.println(connection.requestConnectionData());
+            } catch (LostConnectionException e){
+                System.out.println(e);
+                i1--;
+            }
+            i1++;
         }
 
     }
@@ -99,7 +133,6 @@ public class Start4_2 {
                 student.addMark(mark);
             } catch (WrongMarkException e){
                 throw new IllegalArgumentException("wrong mark", e);
-//                return ;
             }
         }
         for(Student student : students) {
@@ -107,4 +140,15 @@ public class Start4_2 {
         }
     }
 
+
+    public static void addMarksToStudent(ArrayList<Integer> marks, Student student){
+        if(marks==null || marks.isEmpty()) throw new IllegalArgumentException("must be at least 1 mark on the list");
+        Student newStudent = new Student(student);
+        try{
+            newStudent.addMarks(marks.stream().mapToInt(x->x).toArray());
+        } catch (WrongMarkException e){
+            throw new IllegalArgumentException("wrong mark", e);
+        }
+        student.addMarks(marks.stream().mapToInt(x->x).toArray());
+    }
 }

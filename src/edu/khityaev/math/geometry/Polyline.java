@@ -14,6 +14,12 @@ public class Polyline implements Lengthening, PolygonalChain{
     public Polyline(){
     }
 
+    public Polyline(Polyline polyline){
+        for(Point p : polyline.getPoints()){
+            this.points.add(new Point(p));
+        }
+    }
+
     public void addPoint(Point point){
         points.add(point);
     }
@@ -102,5 +108,22 @@ public class Polyline implements Lengthening, PolygonalChain{
     @Override
     public final int hashCode() {
         return Objects.hash(toLines());
+    }
+
+    @Override
+    protected Polyline clone(){
+
+        try{
+            Polyline clonedPolyline = (Polyline) super.clone();
+            clonedPolyline.points = new ArrayList<>();
+            for(Point p : this.points){
+                clonedPolyline.points.add(p.clone());
+            }
+//            ArrayList<Point> list = (ArrayList<Point>) this.points;
+//            clonedPolyline.points = (List<Point>) list.clone();
+            return clonedPolyline;
+        } catch (CloneNotSupportedException e){
+            throw new RuntimeException(e);
+        }
     }
 }

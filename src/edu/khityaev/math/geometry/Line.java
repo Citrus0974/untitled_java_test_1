@@ -68,7 +68,15 @@ public class Line<T extends Point> implements Lengthening, Cloneable{
     }
 
     @Override
-    public Line clone() {
-        return new Line(a.clone(), b.clone());
+    public Line<T> clone() {
+        Line<T> newLine;
+        try{
+            newLine = (Line<T>) super.clone();
+            newLine.a = (T) this.a.clone();
+            newLine.b = (T) this.b.clone();
+        } catch(CloneNotSupportedException e){
+            throw new RuntimeException(e);
+        }
+        return newLine;
     }
 }
