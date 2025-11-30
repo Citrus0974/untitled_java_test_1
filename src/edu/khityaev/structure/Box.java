@@ -16,12 +16,11 @@ public class Box<T> {
     }
 
     public void putObj(T obj) {
-        if(!this.isEmpty()) throw new RuntimeException();
+        if(!this.isEmpty()) throw new RuntimeException("box is not empty");
         this.obj = obj;
     }
 
     public boolean isEmpty(){
-        if(obj==null) return true;
-        else return false;
+        return obj == null;
     }
 }

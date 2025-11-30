@@ -11,12 +11,8 @@ public class Storage<T> {
         this.obj = obj;
     }
 
-    public T getObj() {
-//        if(obj==null) {
-//            if(T.class.isInstance(Integer.class)){
-//                return new Integer(0);
-//            }
-//        }
-        return obj;
+    public T getObj(T defaultValue) {
+        if (obj!=null) return obj;
+        return defaultValue;
     }
 }

@@ -36,7 +36,7 @@ package edu.khityaev.yademocontestfigital;
 
 import java.util.Scanner;
 
-public class Start {
+public class DemocontestStart {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         String j = scanner.nextLine();
@@ -52,7 +52,7 @@ public class Start {
         }
         System.out.println(count);
     }
-    Stac
+
 }
 
 //import java.io.*;

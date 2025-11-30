@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Student implements Comparable {
     private String name = "";
     private List<Integer> marks = new ArrayList<>();
-    private MarkCriteria criteria;
+    private final MarkCriteria criteria;
 
     public Student(String name, int...marks){
         this(name, null, marks);
@@ -40,7 +40,7 @@ public class Student implements Comparable {
         this.criteria = student.criteria;
     }
 
-    public List getMarks() {
+    public List<Integer> getMarks() {
         return marks;
     }
 
@@ -124,5 +124,7 @@ public class Student implements Comparable {
         Student newStudent = (Student) value;
         if(this.averageMark() == newStudent.averageMark()) return 0;
         if(this.averageMark() > newStudent.averageMark()) return 1; else return -1;
+//        return Double.compare(this.averageMark(), newStudent.averageMark());
+
     }
 }
