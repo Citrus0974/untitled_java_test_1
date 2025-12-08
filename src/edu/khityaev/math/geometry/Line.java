@@ -25,6 +25,7 @@ public class Line<T extends Point> implements Lengthening, Cloneable{
         this.a = (T) new Point3D(x1, y1, z1);
         this.b = (T) new Point3D(x2, y2, z2);
     }
+    //а если линия другого типа точек будет?
     public Line(Line line){
         this((T) line.a, (T) line.b);
     }
