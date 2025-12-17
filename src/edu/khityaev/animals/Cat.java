@@ -1,7 +1,7 @@
 package edu.khityaev.animals;
 
 public class Cat implements Meowing{
-    public String name;
+    String name;
 
     public Cat(String name){
         this.name=name;
