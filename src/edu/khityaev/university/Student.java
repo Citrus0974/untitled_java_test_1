@@ -11,6 +11,7 @@ public class Student implements Comparable {
     private String name = "";
     private List<Integer> marks = new ArrayList<>();
     private final MarkCriteria criteria;
+    private List<ActionUndo> actions = new ArrayList<>();
 
     public Student(String name, int...marks){
         this(name, null, marks);
@@ -47,10 +48,12 @@ public class Student implements Comparable {
     public void addMark(int mark){
         if(this.criteria==null){
             marks.add(mark);
+            this.actions.add(()->this.marks.remove(mark));
             return;
         }
         if (!criteria.isMarkCorrect(mark)) throw new WrongMarkException(this.name);
         marks.add(mark);
+        this.actions.add(()->this.marks.removeLast());
      }
 
     public void addMarks(int...marks){
@@ -65,13 +68,26 @@ public class Student implements Comparable {
             }
         }
         this.marks.addAll(newMarks);
+        this.actions.add(() -> {
+            for(int i=marks.length-1; i>=0; i--){
+                this.marks.removeLast();
+            }
+        });
     }
 
     public void setMarks(List<Integer> marks) {
         for(Integer mark : marks){
             if (!criteria.isMarkCorrect(mark)) throw new WrongMarkException(this.name);
         }
+        List OldMarks = this.marks;
         this.marks = marks;
+        actions.add(()-> this.marks = OldMarks);
+    }
+
+    public void setName(String name) {
+        String oldName = this.name;
+        this.name = name;
+        actions.add(() -> this.name = oldName);
     }
 
     public double averageMark(){
@@ -92,6 +108,13 @@ public class Student implements Comparable {
         return true;
     }
 
+    public void Undo(){
+        actions.removeLast().undo();
+    }
+
+    public void Save(){
+
+    }
 
 
     @Override

@@ -5,9 +5,9 @@ public class CatDog extends Dog implements Meowing{
     Dog dog;
 
     public CatDog(String name) {
+       super("");
        cat = new Cat(name);
        dog = new Dog(name);
-       super("");
     }
 
     @Override

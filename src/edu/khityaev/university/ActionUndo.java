@@ -1,4 +1,5 @@
 package edu.khityaev.university;
 
-public interface Action {
+public interface ActionUndo {
+    public void undo();
 }
