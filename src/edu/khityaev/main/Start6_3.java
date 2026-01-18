@@ -4,7 +4,9 @@ import edu.khityaev.structure.Flow;
 import edu.khityaev.structure.Storage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.*;
 
 public class Start6_3 {
@@ -29,7 +31,7 @@ public class Start6_3 {
             return a.concat(str.substring(1, str.length()));
         });
         System.out.println(stringList2);
-        List<String> stringList3 = filter(stringList, s-> s.length()<0);
+        List<String> stringList3 = filter(stringList, s-> s.length()<10);
         List<String> numstrlist = List.of("123", "2", "5", "7");
         List<Integer> integerList = map(numstrlist, Integer::parseInt);
 
@@ -51,14 +53,20 @@ public class Start6_3 {
         System.out.println(reduced2);
         String reduced3 = reduce(stringList, (a, b) -> b.length() < a.length() ? a : b).orElse((Object) "").toString();
         System.out.println(reduced3);
-        String reduced4 = reduce(stringList, (a, b) -> b.length() < a.length() ? a : b).orElseThrow( () -> {throw new IllegalArgumentException();
-        }).toString();
+        String reduced4 = reduce(stringList, (a, b) -> b.length() < a.length() ? a : b).orElseThrow( () ->
+        {throw new IllegalArgumentException();}).toString();
         System.out.println(reduced4);
 
-        int res;
-        res = Flow.of(stringList).filter(s-> s.matches("\\d+")).map(Integer::parseInt).reduce(0, Integer::sum);
+        System.out.println("FLOOOW");
+        int res2 = Flow.of(stringList)
+                .filter(s-> s.matches("\\d+"))
+                .map(Integer::parseInt)
+                .reduce(0, ( a,  b) -> Integer.sum(a, b));
 //        res = Flow.of(stringList.subList(3, 5)).map(Integer::parseInt).reduce(0, Integer::sum);
-        System.out.println(res);
+        System.out.println(res2);
+
+//        System.out.println("6.3.3 - Hashmap");
+
 
 
         System.out.println("6.3.4");
@@ -79,6 +87,24 @@ public class Start6_3 {
                     } else listPositive.add(x);
                 });
         System.out.println(intlistlist);
+
+        System.out.println("6.3.4 - Hashmap");
+        Map<String, List<Integer>> intListHashMap = collect(integerList2,
+                () -> {
+                    return new HashMap<String, List<Integer>>();
+                },
+                (map, x) -> {
+                    List<Integer> listPositive = new ArrayList<>();
+                    List<Integer> listNegative = new ArrayList<>();
+                    if (x < 0) {
+                        listNegative.add(x);
+                    } else {
+                        listPositive.add(x);
+                    }
+                    map.put("Positive", listPositive);
+                    map.put("Negative", listNegative);
+                });
+        System.out.println(intListHashMap);
 
     }
 

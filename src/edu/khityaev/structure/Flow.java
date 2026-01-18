@@ -1,15 +1,18 @@
 package edu.khityaev.structure;
 
+import javax.annotation.processing.Filer;
+import javax.swing.Box;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class Flow<T> {
-    private List<T> elements;
+    private final List<T> elements;
 //    private List<Object> actions = new ArrayList<>(); //список действий - макрос
-    private Command command;
+    private Command<?, ?> command;
 
     private Flow(List<T> elements) {
         this.elements = new ArrayList<T>(elements);
@@ -19,41 +22,39 @@ public class Flow<T> {
         return new Flow<>(inputList);
     }
 
-    public  <R> Flow<R> map(Function<T, R> fun){
-//        List<R> res = (List) elements;
-//        for (int i=0; i<res.size(); i++){
-//            res.set(i, fun.apply((elements.get(i))));
-//        }
-//        this.elements= (List) res;
-//        return (Flow<R>) new Flow<>(res);
+//    List<T> getElements() {
+//        return List.copyOf(elements);
+//    }
 
-        return (Flow<R>) this;
+    private void appendCommand(Command<?, ?> cmd){
+        if(command == null){
+            this.command = cmd;
+        } else {
+            command.addNext(cmd);
+        }
+    }
+
+    public <R> Flow<R> map(Function<T, R> fun){
+        Command<T, R> map = new Map<>(fun);
+        this.appendCommand(map);
+        return (Flow<R>)this;
     }
 
     public Flow<T> filter(Predicate<T> fun){
-//        int origSize = elements.size();
-//        List<T> res = elements;
-//        for (int i=0; i<origSize; i++){
-//            if(!fun.test(elements.get(i))) elements.remove(i--);
-//            origSize--;
-//        }
-//        this.elements = res;
-//        return new Flow<>(res);
-        actions.add(fun);
+        Command<T, T> command = new Filter<>(fun);
+        this.appendCommand(command);
         return (Flow<T>) this;
     }
 
-    public T reduce(T init, BinaryOperator<T> operator){
-
-        up: for(Object t : elements){
-            for(Object action : actions){
-                if(action instanceof Predicate rule){
-                    if(!rule.test(t)) continue up;
-                } if(action instanceof Function function){
-                    t = function.apply(t);
-                }
-            }
-            init = operator.apply(init, (T) t);
+    public <N> N reduce(N init, BinaryOperator<N> operator){
+//        List<?> res;
+//        if(command==null) res = elements;
+//        else{
+//            res = command.applyCommand(elements);
+//        }
+        List<?> res = command == null ? elements : command.applyCommand(elements);
+        for(Object t : res){
+            init = operator.apply(init, (N)t);
         }
         return init;
 
@@ -68,10 +69,7 @@ public class Flow<T> {
         // вариант 2 - цепочка ответственности
         //либо в самом комманд хранится ссылка на следующий комманд - цепочка ответственности
 
-//        for(T t : elements){
-//            init=operator.apply(init, t);
-//        }
-//        return init;
+
     }
 }
 
