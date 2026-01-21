@@ -1,11 +1,8 @@
 package edu.khityaev.math.geometry;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
-public class Polyline implements Lengthening, PolygonalChain{
+public class Polyline implements Lengthening, PolygonalChain, Iterable<Point>{
     private List<Point> points = new ArrayList<>();
 
     public Polyline(Point...points){
@@ -125,5 +122,29 @@ public class Polyline implements Lengthening, PolygonalChain{
         } catch (CloneNotSupportedException e){
             throw new RuntimeException(e);
         }
+    }
+
+    public class Iterator<P> implements java.util.Iterator<Point>{
+        int currentPosition = 0;
+        Polyline polyline;
+
+        private Iterator(Polyline polyline){
+            this.polyline = polyline;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentPosition < polyline.points.size();
+        }
+
+        @Override
+        public Point next() {
+            return polyline.points.get(currentPosition++);
+        }
+    }
+
+    @Override
+    public Iterator<Point> iterator() {
+        return new Iterator<>(this);
     }
 }

@@ -16,7 +16,7 @@ public class Start2_3 {
         NaturalFraction f1 = new NaturalFraction(3, 5);
         System.out.println(differentNumberSum(2, f1, 2.3));
         System.out.println(differentNumberSum(3.6, new NaturalFraction(49, 12), 3, new NaturalFraction(3, 2)));
-        System.out.println(differentNumberSum(new NaturalFraction(1, 3), new Integer(1)));
+        System.out.println(differentNumberSum(new NaturalFraction(1, 3), 1));
 
         System.out.println("2.3.2");
         singAll(new Sparrow(), new Cuckoo(), new Parrot("something"), new Cuckoo());

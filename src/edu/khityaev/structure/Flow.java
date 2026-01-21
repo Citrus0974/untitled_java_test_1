@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 public class Flow<T> {
     private final List<T> elements;
 //    private List<Object> actions = new ArrayList<>(); //список действий - макрос
-    private Command<?, ?> command;
+    private Command command;
 
     private Flow(List<T> elements) {
         this.elements = new ArrayList<T>(elements);
@@ -26,7 +26,7 @@ public class Flow<T> {
 //        return List.copyOf(elements);
 //    }
 
-    private void appendCommand(Command<?, ?> cmd){
+    private void appendCommand(Command cmd){
         if(command == null){
             this.command = cmd;
         } else {
@@ -52,7 +52,7 @@ public class Flow<T> {
 //        else{
 //            res = command.applyCommand(elements);
 //        }
-        List<?> res = command == null ? elements : command.applyCommand(elements);
+        List res = command == null ? elements : command.applyCommand(elements);
         for(Object t : res){
             init = operator.apply(init, (N)t);
         }

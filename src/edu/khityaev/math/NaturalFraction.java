@@ -1,9 +1,14 @@
 package edu.khityaev.math;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class NaturalFraction extends Number implements Cloneable{
     final int numerator;
     final int denominator;
 
+    //Должен быть package-private для 7.1.3, но остаётся публичным для старых файлов
     public NaturalFraction(int numerator, int denominator){
         if(denominator==0) throw new IllegalArgumentException();
         if (denominator<0) {
@@ -73,4 +78,18 @@ public class NaturalFraction extends Number implements Cloneable{
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        NaturalFraction that = (NaturalFraction) o;
+        return numerator == that.numerator && denominator == that.denominator;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numerator, denominator);
+    }
+
+
 }
