@@ -40,14 +40,13 @@ public class Start8_1 {
         System.out.println(ValidationFramework.validate(human2));
 
 //        System.out.println("8.1.5");
-        
+
     }
 
     public static List<Field> fieldCollection(Class<?> targetCls ){
-        List<Field> fields = new ArrayList<>();
 
         List<Field> ownFields = Arrays.asList(targetCls.getDeclaredFields());
-        fields.addAll(ownFields);
+        List<Field> fields = new ArrayList<>(ownFields);
 
         Set<Class> parents = getAllParentClasses(targetCls, new HashSet<>());
         for(Class parent: parents){

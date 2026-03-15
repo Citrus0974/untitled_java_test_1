@@ -1,8 +1,6 @@
 package edu.khityaev.main;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Start8_0_Streams {
@@ -27,13 +25,13 @@ public class Start8_0_Streams {
 
 
         List<String> stringList3 = List.of("asd", "asd","asd","asd","asd","Awer", "dsf", "sdf", "sdf", "af", "12");
-        int c = (int) stringList3.stream().distinct().count();
-        System.out.println(c);
-        c = (int) stringList3.stream()
+        int cInt = (int) stringList3.stream().distinct().count();
+        System.out.println(cInt);
+        cInt = (int) stringList3.stream()
                 .flatMapToInt(String::chars)
                 .distinct()
                 .count();
-        System.out.println(c);
+        System.out.println(cInt);
 
         Map<String, Integer> map2 = stringList3.stream()
                 .flatMapToInt(String::chars)
@@ -78,6 +76,35 @@ public class Start8_0_Streams {
                 }, (map, map3) -> {});
         System.out.println(sortedStrings);
 
+
+        System.out.println("\u001B[92m"+"PART2 - parallel"+"\u001B[0m");
+         int[] arr = {1, 2, -3, 4, -5, 9, -7, 8};
+         List<Integer> lst = Arrays.stream(arr)
+             .parallel()
+             .peek(x -> System.out.println(x + ":" + Thread.currentThread().getName()))
+             .boxed()
+             .flatMap(x -> x > 0? Stream.of(x): Stream.of(x, 0))
+             .toList();
+
+         List<Integer> res = Arrays.stream(arr)
+             .collect(ArrayList::new,
+                 (list, x) -> {
+                     list.add(x);
+                     if (x < 0) list.add(0);
+                 }, ArrayList::addAll);
+
+         System.out.println(lst);
+         System.out.println(res);
+
+        List<String> strs = List.of("aaaaa", "aaaaaa", "aaaaaa", "pop", "af");
+        List<Character> ch = strs.stream()
+                .parallel()
+                .flatMapToInt(String::chars)
+                .distinct()
+                .collect(ArrayList::new, (list, c) ->{
+                    list.add((char)c);
+                }, ArrayList::addAll);
+        System.out.println(ch);
 
 
     }
