@@ -2,7 +2,7 @@ package edu.khityaev.structure;
 
 import java.util.function.Supplier;
 
-public class Storage<T> {
+public class Storage<T>{
     Supplier<T> lazyObj;
     private T obj;
     public static Storage empty = new Storage(null);
