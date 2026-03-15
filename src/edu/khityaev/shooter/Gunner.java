@@ -1,7 +1,16 @@
 package edu.khityaev.shooter;
 
-public class Gunner {
+import edu.khityaev.annotations.ToString;
+import edu.khityaev.annotations.YesOrNo;
+import edu.khityaev.structure.Entity;
+
+@ToString(YesOrNo.NO)
+public class Gunner extends Entity {
+
+    @ToString(YesOrNo.YES)
     private String name;
+
+    @ToString(YesOrNo.NO)
     Gun gun;
 
 

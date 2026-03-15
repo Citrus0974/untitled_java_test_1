@@ -1,9 +1,11 @@
 package edu.khityaev.life;
 
+import edu.khityaev.validation.AValidate;
 import edu.khityaev.validation.HumanTests;
-import edu.khityaev.validation.Validation;
+import edu.khityaev.validation.Validate;
 
-@Validation(HumanTests.class)
+//@Validate(HumanTests.class)
+@AValidate
 public class Human{
     private Name name;
     private int height = 0;

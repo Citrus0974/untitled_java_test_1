@@ -13,7 +13,7 @@ public class Start8_2 {
 
     public static void main(String[] args) {
         System.out.println("8.2.1");
-        invocableMethod();
+        System.out.println(invocableMethod());
         System.out.println("8.2.2");
         System.out.println(test);
         System.out.println("8.2.3");
@@ -34,7 +34,8 @@ public class Start8_2 {
     }
 
     @Invoke
-    public static void invocableMethod(){
+    public static String invocableMethod(){
         System.out.println("invoked");
+        return "invoked returned";
     }
 }

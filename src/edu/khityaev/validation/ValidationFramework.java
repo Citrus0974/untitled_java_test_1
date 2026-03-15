@@ -1,5 +1,6 @@
 package edu.khityaev.validation;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,12 +10,21 @@ public class ValidationFramework {
 
     public static Map<String, TestResult> validate(Object target){
         Class<?> targetClass = target.getClass();
-        if(!targetClass.isAnnotationPresent(Validation.class)){
+        Class<?> testClass = null;
+        Annotation[] anns = targetClass.getAnnotations();
+        for(Annotation a : anns){
+            if(a.annotationType().isAnnotationPresent(Validate.class)){
+                testClass = a.annotationType().getAnnotation(Validate.class).value();
+            }
+        }
+        if(!targetClass.isAnnotationPresent(Validate.class) && testClass==null){
             return new HashMap<String, TestResult>();
+        }
+        if(targetClass.isAnnotationPresent(Validate.class)){
+            testClass = targetClass.getAnnotation(Validate.class).value();
         }
 
         //собирание методов
-        Class<?> testClass = targetClass.getAnnotation(Validation.class).value();
         Method[] methods = testClass.getDeclaredMethods();
         List<Method> testsList = new ArrayList<>();
         for(Method m : methods){

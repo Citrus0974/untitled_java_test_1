@@ -5,6 +5,7 @@ import edu.khityaev.life.Human;
 import edu.khityaev.math.geometry.Line;
 import edu.khityaev.math.geometry.Point;
 import edu.khityaev.math.geometry.Point3D;
+import edu.khityaev.shooter.Gunner;
 import edu.khityaev.structure.Entity;
 import edu.khityaev.structure.Storage;
 import edu.khityaev.validation.ValidationFramework;
@@ -30,7 +31,7 @@ public class Start8_1 {
         System.out.println("8.1.3");
 //        System.out.println(Point.class.getDeclaredFields()[0].getName());
 //        System.out.println(Point.class.getSimpleName());
-        System.out.println(new Test3());
+        System.out.println(new Gunner("test"));
 
 
         System.out.println("8.1.4");
@@ -104,18 +105,18 @@ public class Start8_1 {
     }
 }
 
-class Test1 extends Entity{
-    int a = 5;
-}
-
-interface Test2{
-    final int b = 3;
-
-}
-
-class Test3 extends  Test1 implements Test2{
-    String c = "1";
-}
+//class Test1 extends Entity{
+//    int a = 5;
+//}
+//
+//interface Test2{
+//    final int b = 3;
+//
+//}
+//
+//class Test3 extends  Test1 implements Test2{
+//    String c = "1";
+//}
 
 
 
