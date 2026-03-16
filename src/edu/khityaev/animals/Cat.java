@@ -1,5 +1,8 @@
 package edu.khityaev.animals;
 
+import edu.khityaev.annotations.Invoke;
+import edu.khityaev.annotations.TimeMeasure;
+
 public class Cat implements Meowing{
     String name;
 
@@ -18,6 +21,7 @@ public class Cat implements Meowing{
             System.out.println(out);
         } else this.meow();
     }
+
     public void meow(){
         System.out.println(name + ": meow!");
     }
